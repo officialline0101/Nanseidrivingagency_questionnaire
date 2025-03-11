@@ -261,10 +261,7 @@
         <h1>南星運転代行<br>アンケートフォーム</h1>
         <div class="info-text">以下全て入力後【アンケート送信】ボタンを押してください<br>アンケート回答にご協力していただいた方にお得なクーポンを差し上げます❣️</div>
 
-        <div class="label">お名前(漢字フルネーム)</div>
-        <textarea id="message" rows="1" placeholder="入力してください"></textarea> <!-- メッセージ入力フィールド -->
-
-        <div class="label">お名前(ふりがな)</div>
+        <div class="label">お名前※ひらがな</div>
         <textarea id="message2" rows="1" placeholder="入力してください"></textarea> <!-- メッセージ入力フィールド -->
 
         <div class="label">県内or県外</div>
@@ -362,14 +359,12 @@
         }
 
         function submitForm() {
-            const message = document.getElementById('message').value;
             const message2 = document.getElementById('message2').value;
             priorityCount: priorityCount;
             chanceCount: chanceCount;
             IntroductionCount: IntroductionCount;
 
             const formData = {
-                message,
                 message2,
                 priorityCount,
                 chanceCount,
@@ -377,14 +372,8 @@
             };
 
             // フォームデータのチェック
-            if (!formData.message) {
-                alert('お名前(漢字フルネーム)を入力してください。');
-                return;
-            }
-
-            // フォームデータのチェック
             if (!formData.message2) {
-                alert('お名前(ふりがな)を入力してください。');
+                alert('お名前※ひらがなを入力してください。');
                 return;
             }
 
@@ -408,7 +397,7 @@
             // LINEトークにメッセージを送信
             liff.sendMessages([{
                 type: 'text',
-                text: `≪南星アンケート≫\n【お名前(漢字フルネーム)】\n・${formData.message}\n\n【お名前(ふりがな)】\n・${formData.message2}\n\n【県内or県外】\n・${formData.priorityCount}\n\n【性別を教えてください】\n・${formData.chanceCount}\n\n【誕生月を教えてください】\n・${formData.IntroductionCount}`
+                text: `≪南星アンケート≫\n【お名前※ひらがな】\n・${formData.message2}\n\n【県内or県外】\n・${formData.priorityCount}\n\n【性別を教えてください】\n・${formData.chanceCount}\n\n【誕生月を教えてください】\n・${formData.IntroductionCount}`
             }]).then(() => {
                 /* メッセージ送信成功時の処理 */
                 alert('アンケートの回答ありがとうございます❣️');
